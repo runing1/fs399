@@ -1,0 +1,122 @@
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+}
+.c_calendar {
+	display: none;
+	position: fixed;
+	width: 360px;
+	height: 344px;
+	overflow: auto;
+    top: 50%;
+    left: 50%;
+    margin: -168px 0 0 -200px;
+	background: #fff;
+	border: 1px solid #ddd;
+	font-family: Tahoma,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
+}
+.firstSelect{
+	width:360px;
+	background:#fff;
+	position:fixed;
+	top:0;
+	left:0;
+	height:384px;
+	overflow:scroll;
+	display:none;
+}
+body td {
+	text-align:center;
+	height:40px;
+}
+.dateZone{
+	width:360px;
+	margin:auto;
+	background:#ffffff;
+	border-bottom:1px solid #ddd;
+	border-top:1px solid #ddd;
+	color:#666;
+    margin-top: 50px;
+	position: fixed;
+	z-index:9999;
+}
+.dateZone td{
+	background:#ffffff;
+	height:45px;
+	line-height: 45px;
+}
+.tbody {
+	margin-top: 97px;
+}
+.tbody td{
+	background:#fff;
+	color: #555;
+}
+.dateZone td{
+	width:14.2%;
+	font-size: 14px;
+}
+.dateZone .colo{
+	color:#fa967f;
+}
+.dateTable{
+	width:99.4%;
+	margin:auto;
+	border-bottom:1px solid #ddd;
+}
+.tbody .ny1{
+	width:100%;
+	text-align:center;
+	padding:5px 0;
+	color: #555;
+	background-color: #FAFAFA;
+	border-bottom:1px solid #ddd;
+	font-size: 15px;    
+	line-height: 28px;
+}
+.dateTable td{
+	width:14.2%;
+	font-size: 14px;
+	line-height: 24px;
+}
+.dateTable .rz{
+	font-size:12px;
+	font-weight: 700;
+}
+.datTip{
+	background:rgba(0,153,255,0.8);
+	width:40%;
+	position:fixed;
+	bottom:2px;
+	left:30%;
+}
+.datTip p{
+	width:100%;
+	margin:auto;
+	text-align:center;
+	color:#fff;
+	padding:3px 0;
+	font-size:14px;
+	}
+.rz {
+	position:relative;
+}
+.hover {
+	font-size:13px;
+	font-weight: 700;
+	display:inline-block;
+	width:60%;
+	background:#FF3;
+	color:red;
+	text-align:center;
+	border-radius:5px;
+	line-height: 20px;
+}
+td{ 
+	border-radius:2px;
+}
+section {
+	margin:10px;
+	padding:5px;
+}

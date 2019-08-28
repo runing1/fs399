@@ -1,0 +1,218 @@
+#apply_store {
+    min-width: 1000px;
+    width: 70%;
+    margin: 20px auto;
+}
+#apply_store .right_content {
+    font-size: 12px;
+    color: #999;
+}
+.choose_upload .upload_file {
+    position: absolute;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+	width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/*logo*/
+#apply_store_head {
+    background: #fff;
+    padding: 0 20px;
+}
+#apply_store_head .apply_logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    padding: 2px 0;
+}
+#apply_store_head .logo_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo_content {
+	width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    position: relative;
+    text-align: right;
+}
+.logo_content img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit:cover;
+    position: absolute;
+	left: 0px;
+    top: 0px;
+    background: #999;
+    display: none;
+}
+.logo_content span {
+    position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+/*****main*****/ 
+#apply_store_main .apply_store_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 28px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e7e7e7;
+}
+#apply_store_main .apply_store_item .apply_store_input {
+    text-align: right;
+    line-height: 24px;
+    min-width: 200px;
+}
+/*店铺信息*/
+#apply_store_main .main_store_info {
+    background: #fff;
+    margin-top: 20px;
+}
+/*二维码*/ 
+#apply_store_main .main_wechat_code {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+.main_wechat_code .left_text p {
+    line-height: 14px;
+    margin-bottom: 10px;
+}
+.main_wechat_code .left_text span {
+    font-size: 10px;
+    line-height: 12px;
+    color: #999;
+}
+.main_wechat_code .right_pic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.right_pic {
+	width: 80px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    display: block;
+    background-image: url(../../../public/static/images/store/code.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.right_pic img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    position: absolute;
+	left: 0px;
+	top: 0px;
+}
+/*个人信息*/
+#apply_store_main .main_personal_info {
+    margin-top: 20px;
+    background: #fff;
+}
+.main_personal_info .validation_code_btn {
+    display: inline-block;
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: #50d7fc;
+    border-radius: 13px;
+    color: #fff; 
+}
+/*身份证正反面*/
+#apply_store_main .id_card_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+.id_card_info .card_info_item {
+    width: 50%;
+    text-align: center;
+}
+.id_card_info .card_info_item p {
+    margin-top: 20px;
+}
+.id_card_info .card_info_item span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.id_card_info .card_info_item .card_info_img {
+    width: 240px;
+    height: 160px;
+    margin: 20px auto 0;
+    border: 1px dashed #50d7fc;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.card_info_img img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.card_info_img input {
+    position: absolute;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+	width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+/*提交*/
+#apply_store_main .submit_approve {
+    margin-top: 20px;
+    background: #ffff;
+    padding: 30px 20px;
+}
+.submit_approve .submit_btn {
+    width: 240px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 22px; 
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background: #50d7fc;
+    margin: 0 auto 24px;
+    cursor: pointer;
+}
+.submit_approve .agreement {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.submit_approve .agreement input {
+    cursor: pointer;
+}
+.submit_approve .agreement p {
+    margin-left: 5px;
+}
+.submit_approve .agreement span {
+    color: #50d7fc;
+}

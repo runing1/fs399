@@ -1,0 +1,142 @@
+<div class="bDiv" style="height: auto;">
+    <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+        <table>
+            <tbody>
+            <if condition="empty($info) eq true">
+                <tr data-id="0">
+                    <td class="no-data" align="center" axis="col0" colspan="50">
+                        <i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+                    </td>
+                </tr>
+                <else/>
+                <volist name="info" id="v">
+                    <tr>
+                        <!--<td align="center" class="">-->
+                        <!--<label>-->
+                        <!--<div style="text-align: center; width: 50px;">-->
+                        <!--<if condition="$v['status'] eq 0"><input type="checkbox" name="selected[]" value="{$v['id']}"></if>-->
+                        <!--</div></label>-->
+                        <!--</td>-->
+                        <!--<td align="center" class="">-->
+                        <!--<div style="text-align: center; width: 50px;">-->
+                        <!--{$v.id}-->
+                        <!--</div>-->
+                        <!--</td>-->
+                        <td align="center" class="">
+                            <label>
+                                <div style="text-align: center; width: 50px;">
+                                    <if condition="$v['status'] eq 0"><input type="checkbox" name="selected[]"
+                                                                             value="{$v['id']}"></if>
+                                </div>
+                            </label>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">
+                                <!--<a class="open" href="{:U('Admin/user/detail',array('id'=>$v['user_id']))}" target="blank">-->
+                                {$v.username}
+                                <!--</a>-->
+                            </div>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">{$v.level}</div>
+                        </td>
+                        <td align="center" class="">
+                            <if condition="$v['type'] eq 1">
+                                <div style="text-align: center; width: 140px;">提现</div>
+                            </if>
+                            <if condition="$v['type'] eq 2">
+                                <div style="text-align: center; width: 140px;">缴纳管理费</div>
+                            </if>
+                            <if condition="$act_list eq 'all'">
+                                <if condition="$v['type'] eq 3">
+                                    <div style="text-align: center; width: 140px;">运营商账户提现</div>
+                                </if>
+                                <if condition="$v['type'] eq 4">
+                                    <div style="text-align: center; width: 140px;">营利分红</div>
+                                </if>
+                                <if condition="$v['type'] eq 5">
+                                    <div style="text-align: center; width: 140px;">运营商店铺提现</div>
+                                </if>
+                            </if>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">{$v.mobile}</div>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">￥{$v.type_money}</div>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">{$v.createtime|date="Y-m-d
+                                H:i",###}
+                            </div>
+                        </td>
+                        <td align="center" class="">
+                            <div style="text-align: center; width: 140px;">￥{$v['update_money']}</div>
+                        </td>
+                        <if condition="$act_list eq 'all'">
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 80px;">{$v['operator_name']}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 80px;"><if condition="$v['operator_type'] eq 1">县运营商</if><if condition="$v['operator_type'] eq 2">股东</if><if condition="$v['operator_type'] eq 3">核心股东</if></div>
+                            </td>
+                        </if>
+                        <td align="left" class="handle">
+                            <div style="text-align: center; width: 180px; max-width:250px;">
+                                <!--<a href="{:U('editWithdrawals',array('id'=>$v['id'],'p'=>$_GET['p']))}"-->
+                                   <!--class="btn blue"><i class="fa fa-pencil-square-o"></i>查看</a>-->
+                                <if condition="$v['status'] elt -1">
+                                    <a class="btn red" href="javascript:void(0)" data-id="{$v['id']}"
+                                       onclick="delfunc(this)" data-url="{:U('delTeams')}"><i
+                                            class="fa fa-trash-o"></i>删除</a>
+                                </if>
+                            </div>
+                        </td>
+                        <td align="" class="" style="width: 100%;">
+                            <div>&nbsp;</div>
+                        </td>
+                    </tr>
+                </volist>
+            </if>
+            </tbody>
+        </table>
+    </div>
+    <div class="iDiv" style="display: none;"></div>
+</div>
+<!--分页位置-->
+{$show}
+<script>
+    $(".pagination  a").click(function () {
+        var page = $(this).data('p');
+        ajax_get_table('search-form', page);
+    });
+    //    $(document).ready(function(){
+    //        // 表格行点击选中切换
+    //        $('#flexigrid >table>tbody>tr').click(function(){
+    //            $(this).toggleClass('trSelected');
+    //        });
+    //        $('#user_count').empty().html("{$pager->totalRows}");
+    //    });
+        function delfun(obj) {
+            // 删除按钮
+            layer.confirm('确认删除？', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                $.ajax({
+                    type: 'post',
+                    url: $(obj).attr('data-url'),
+                    data: {id : $(obj).attr('data-id')},
+                    dataType: 'json',
+                    success: function (data) {
+                        layer.closeAll();
+                        if (data.status == 1) {
+                            $(obj).parent().parent().parent().remove();
+                        } else {
+                            layer.alert(data.msg, {icon: 2});
+                        }
+                    }
+                })
+            }, function () {
+            });
+       }
+</script>

@@ -1,0 +1,181 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>推广 - 扫码</h3>
+                <h5>团队信息</h5>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+
+
+        <div class=" ">
+            <!--<div class="page_topbar">-->
+
+                <!--<div class="title">我的团队()</div>-->
+
+            <!--</div>-->
+
+            <div class="team_list_head_tj">
+                <div class="">推荐链接（点击复制）</div>
+                <button onclick="copyText()">复制</button>
+                <p id="text" style="font-size: 16px;text-align: left;padding: 0px 15px;"">{$tjurl}</p>
+                <textarea id="input"></textarea>
+
+            </div>
+
+                <!--<div class="team_list_head_tj">-->
+                    <!--<div class="">推荐链接（点击复制）</div>-->
+                    <!--<div class="" id="copy">-->
+                        <!--<div id="article" style="font-size: 16px;text-align: left;padding: 0px 15px;">{$tjurl}</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="team_list_head_tj">
+
+                    <div>推荐二维码</div>
+                    <div class="img" style="text-align:center;">
+                        <a href="{$tjimg}"><img src="{$tjimg}"/></a>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+    function copyText() {
+        var text = document.getElementById("text").innerText;
+        var input = document.getElementById("input");
+        input.value = text; // 修改文本框的内容
+        input.select(); // 选中文本
+        document.execCommand("copy"); // 执行浏览器复制命令
+        alert("复制成功");
+    }
+</script>
+
+<style type="text/css">
+
+    /*.wrapper {position: relative;}*/
+    #input {position: absolute;top: 0;left: 0;opacity: 0;z-index: -10;}
+    .mui-active:active{color:#007aff}
+    .mui-active:hover{color:#007aff}
+    .mui-active:visited{color:#007aff}
+    .mui-active:link{color:#007aff}
+
+    .mui-pull-bottom-pocket {
+        background: #ddd;
+    }
+
+    .mui-pull-caption {
+        line-height: 20px;
+        display: block;
+    }
+
+    .team_list_head {
+        height: 46px;
+        width: 100%;
+        background: #fff;
+        padding: 13px 3% 10px 3%;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .team_list_head .info {
+        height: 20px;
+        float: left;
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+        text-align: left;
+    }
+
+    .team_list_head .num2 {
+        height: 20px;
+        float: right;
+        text-align: right;
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+        font-size: 14px;
+        color: #989898;
+    }
+
+    .team_list {
+        height: 104px;
+        width: 100%;
+        padding: 15px 3%;
+        background: white;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .team_list .img {
+        width: 16%;
+        height: 40px;
+        float: left;
+        text-align: left;
+    }
+
+    .team_list .img img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .team_list .info {
+        height: 40px;
+        width: 47%;
+        float: left;
+        font-size: 14px;
+        color: #666;
+        line-height: 25px;
+        text-align: left;
+    }
+
+    .team_list .info span {
+        font-size: 12px;
+        color: #989898;
+    }
+
+    .team_list .num2 {
+        height: 40px;
+        width: 49%;
+        float: right;
+        text-align: right;
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+        margin-right: 10px;
+    }
+
+    .team_list .num2 span {
+        font-size: 12px;
+        color: #989898;
+    }
+
+    .team_list_head_tj {
+        height: auto;
+        width: 100%;
+        background: #fff;
+        padding: 13px 3% 10px 3%;
+        border-bottom: 1px solid #eaeaea;
+        word-wrap: break-word;
+        overflow: hidden;
+        color: #989898;
+    }
+
+    .tjmcenter {
+        text-align: center;
+    }
+
+    #pullrefresh {
+        height: 50px;
+    }
+</style>
+</html>

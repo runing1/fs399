@@ -1,0 +1,275 @@
+<include file="public/layout"/>
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/static/js/admincp.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery.cookie.js"></script>
+<style>
+    .shopcard {
+        overflow: hidden;
+        padding: 20px 20px;
+        border: 1px solid #dadada;
+    }
+
+    .ma-to-20 {
+        margin-top: 20px;
+    }
+
+    .frozen-cha .cuschan {
+        width: 25%;
+    }
+
+    .shopcard .cuschan {
+        float: left;
+    / / width: 50 %;
+        text-align: center;
+    }
+
+    .shopcard .cuschan span {
+        font-size: 14px;
+        text-align: right;
+    }
+
+    .money, .frozen {
+        background: url(../images/money.png) no-repeat;
+        width: 41px;
+        height: 36px;
+        display: inline-block;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+
+    .shopcard .cuschan .co {
+        margin-left: 37px;
+        color: #e23435;
+    }
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>提现记录</h3>
+                <h5></h5>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flexigrid">
+
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th align="center" abbr="article_title" axis="col3" class="">
+                            <div style="text-align: center; width:20px;" class="">
+                                <input type="checkbox"
+                                       onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+                            </div>
+                        </th>
+
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 100px;" class="">提现金额</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 150px;" class="">提现类型</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">手续费</div>
+                        </th>
+
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">到账金额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">账户名</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">银行名称</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">账户</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">提现状态</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 120px;" class="">申请日期</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">提现备注</div>
+                        </th>
+                        <th style="8:100%" axis="col7">
+                            <div>操作</div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bDiv" style="height: auto;" >
+
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <foreach name="list" item="vo" key="k" >
+                        <tr>
+                            <td align="center" class="">
+                                <label>
+                                    <div style="text-align: center; width: 20px;">
+                                      <input type="checkbox" name="selected[]" value="{$v['id']}">
+                                    </div>
+                                </label>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 100px;">￥{$vo.money}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 150px;"><if condition="$vo.user_type eq 3">账户提现<else/>店铺提现</if></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 150px;">￥{$vo.procedures_money}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">
+                                    ￥{$vo.account_money}
+                                </div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.account_name}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.bank_name}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.account_bank}</div>
+                            </td>
+                            <td align="center" class="">
+                                <if condition="$vo.withdraw_status eq 1">
+                                    <div style="text-align: center; width: 150px;"> 审核中</div>
+                                    <elseif condition="$vo.withdraw_ststus eq 2"/>
+                                    <div style="text-align: center; width: 150px;"> 审核通过</div>
+                                    <else/>
+                                    <div style="text-align: center; width: 150px;"> 审核拒绝</div>
+                                </if>
+
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 120px;">{$vo.create_time|date='Y-m-d H:i',###}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">{$vo.remark}</div>
+                            </td>
+                            <!--<td align="center" class="handle">-->
+                                <!--<div style="text-align: center; width: 150px; max-width:150px;">-->
+                                    <!--<a href="{:U('User/level',array('act'=>'edit','level_id'=>$vo['level_id']))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>编辑</a>-->
+                                    <!--<a class="btn red"  href="javascript:void(0)" data-url="{:U('User/levelHandle')}" data-id="{$vo.level_id}" onClick="delfun(this)"><i class="fa fa-trash-o"></i>删除</a>-->
+                                <!--</div>-->
+                            <!--</td>-->
+                            <td align="" class="" style="width: 100%;">
+                                <div>
+                                    <a class="btn red"  href="javascript:void(0)" data-url="{:U('User/levelHandle')}" data-id="{$vo.level_id}" onClick="delfun(this)"><i class="fa fa-trash-o"></i>删除</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="page p">
+            {$page}
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function () {
+            $(this).toggleClass('trSelected');
+        });
+        // 点击刷新数据
+        $('.fa-refresh').click(function () {
+            location.href = location.href;
+        });
+        laydate.render({
+            theme: "molv",
+            type: "date",
+            elem: "#start_time"
+        })
+        laydate.render({
+            theme: "molv",
+            type: "date",
+            elem: "#end_time"
+        })
+        /* laydate.render({
+         elem: '#start_time',
+         theme: 'molv', //主题
+         format: 'yyyy-MM-dd', //自定义格式
+         calendar: true, //显示公历节日
+         min: '1970-01-01', //最小日期
+         max: '2099-12-31', //最大日期
+         });
+         laydate.render({
+         elem: '#end_time',
+         theme: 'molv', //主题
+         format: 'yyyy-MM-dd', //自定义格式
+         calendar: true, //显示公历节日
+         min: '1970-01-01', //最小日期
+         max: '2099-12-31', //最大日期
+         });*/
+      //  ajax_get_table('search-form', 1);
+    });
+
+    function check_form() {
+        var start_time = $.trim($('#start_time').val());
+        var end_time = $.trim($('#end_time').val());
+        if (start_time == '' ^ end_time == '') {
+            layer.alert('请选择完整的时间间隔', {icon: 2});
+            return false;
+        }
+        if (start_time !== '' && end_time !== '') {
+            $('#create_time').val(start_time + "," + end_time);
+        }
+        if (start_time == '' && end_time == '') {
+            $('#create_time').val('');
+        }
+
+        return true;
+    }
+
+    //批量操作提交
+    function act_submit(wst) {
+        var chks = [];
+        $('input[name*=selected]').each(function (i, o) {
+            if ($(o).is(':checked')) {
+                chks.push($(o).val());
+            }
+        })
+        if (chks.length == 0) {
+            layer.alert('少年，请至少选择一项', {icon: 2});
+            return;
+        }
+        var can_post = false;
+        var remark = "审核通过";
+        if (wst != 1) {
+            layer.prompt({title: '请填写备注(必填)', formType: 2}, function (text, index) {
+                remark = text;
+                audit(chks, wst, remark);
+                layer.close(index);
+            });
+        } else {
+            audit(chks, wst, remark);
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

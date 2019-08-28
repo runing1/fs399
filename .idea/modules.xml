@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/TPshop_V2.5.2.iml" filepath="$PROJECT_DIR$/.idea/TPshop_V2.5.2.iml" />
+      <module fileurl="file://D:/Program Files (x86)/Apache24/htdocs/项目/dscrp.goudiw.com/.idea/dscrp.goudiw.com.iml" filepath="D:/Program Files (x86)/Apache24/htdocs/项目/dscrp.goudiw.com/.idea/dscrp.goudiw.com.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../fs/fs399/fsyd/.idea/fsyd.iml" filepath="$PROJECT_DIR$/../../fs/fs399/fsyd/.idea/fsyd.iml" />
+      <module fileurl="file://D:\PhpStudy20180211\PHPTutorial\WWW\newfanzhuke\h5.fanzu\.idea\h5.fanzu.iml" filepath="D:\PhpStudy20180211\PHPTutorial\WWW\newfanzhuke\h5.fanzu\.idea\h5.fanzu.iml" />
+      <module fileurl="file://D:\PhpStudy20180211\PHPTutorial\WWW\newfanzhuke\newfz\newfanzu_php\.idea\newfanzu_php.iml" filepath="D:\PhpStudy20180211\PHPTutorial\WWW\newfanzhuke\newfz\newfanzu_php\.idea\newfanzu_php.iml" />
+    </modules>
+  </component>
+</project>

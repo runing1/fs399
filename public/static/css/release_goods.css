@@ -1,0 +1,216 @@
+/****发布商品****/
+#goods_release {
+    min-width: 1000px;
+    width: 70%;
+    height: 100%;
+    margin: auto;
+    font-family:HiraginoSansGB-W3;
+    font-weight:normal;
+    color:#333;
+}
+#goods_release .release_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background: #fff;
+    line-height: 60px;
+    padding: 0 20px;
+    border-bottom: 1px solid #e7e7e7;
+}
+.release_head .release {
+    font-size: 16px;
+}
+.release_head .back_btn {
+    cursor: pointer;
+    color: #50d7fc;
+}
+/*线上、线下公用css*/
+#goods_release .bgcolor {
+    background: #fff;
+}
+#goods_release .release_border {
+    border-bottom: 1px solid #e7e7e7;
+}
+#goods_release .release_wrap .mt24 {
+    margin-top: 24px;
+}
+#goods_release .release_category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    padding: 6px 20px;
+    font-weight: 100;
+}
+#goods_release .release_category .c_choose{ 
+    height:32px;
+    line-height: 32px;  
+    font-size: 12px;
+    color:#999;  
+    cursor: pointer;
+    text-align: center;
+} 
+#goods_release .release_wrap .good_input {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+}
+#goods_release .release_wrap .good_input {
+    padding: 6px 20px;
+    font-size: 14px;
+}
+#goods_release .release_wrap .release_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    padding: 6px 20px;
+    border-bottom: 1px solid #e7e7e7;
+    font-weight: 100;
+}
+#goods_release .release_wrap .detail_textarea {
+    width: 96%;
+    min-height: 100px;
+    line-height: 24px;
+    padding: 10px 20px 2px;
+    font-size: 14px;
+    resize: none!important;
+}
+#goods_release .release_wrap .goods_address {
+    height: 32px;
+    line-height: 32px;
+    font-size: 12px;
+    padding: 2px 20px 10px;
+    color: #50d7fc;
+}
+#goods_release .release_wrap  .item_right {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #999;
+}
+#goods_release .release_wrap  .item_right span {
+    text-align: right;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 24px;
+}
+#goods_release .release_wrap .price_input {
+    text-align: left;
+    width: 100px;
+}
+
+/*线上*/
+.content_top .goods_title {
+    border-bottom: 1px solid #e7e7e7;
+}
+#goods_release .content_top .goods_detail .detail_textarea {
+    font-size: 12px;
+}
+.content_middle .online_category,.content_middle .custom_tag {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+#goods_release .release_category .custom_choose{
+    cursor: pointer;
+    color: #999;
+    font-size: 12px;
+}
+.content_bottom .online_preferential {
+    border-bottom: none;
+}
+.content_bottom .release_item .item_input {
+    text-align: right;
+    /* height: 24px; */
+    line-height: 24px;
+} 
+.content_bottom .online_price .item_right {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+}
+#goods_release .release_wrap  .item_right .promotion_info {
+    color: #666;
+}
+#goods_release .release_wrap  .item_right span.promotion_txt {
+    margin-right: 5px;
+    color: #999;
+}
+
+
+/*线下*/
+.release_offline .offline_good_detail {
+    min-height: 120px;
+}
+.release_offline .offline_price .date_price {
+    cursor: pointer;
+    color: #999;
+}
+.release_offline .item_right .right_color {
+    color: #f15656;
+}
+.release_offline .offline_original_price .msg {
+    color: #999;
+    margin-left: 10px;
+}
+.release_offline .offline_price .item_right,.release_offline .offline_original_price .item_right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/*确认发布商品*/
+#goods_release .goods_submit_btn {
+    width: 200px;
+    height: 44px;
+    border-radius:8px;
+    background: #50d7fc; 
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+    margin:  30px auto;
+    cursor: pointer;
+}
+
+/* 日期筛选 */
+.date_select_bar {
+    padding-top: 20px;
+}
+.date_select_bar .start_date,.date_select_bar .end_date {
+    font-size:14px;
+    font-weight:bold;
+    color:rgba(66,66,66,1);
+}
+.date_select_bar input[type="text"],.date_select_bar input[type="text"]:focus,.date_select_bar input[type="text"]:hover,.date_select_bar input[type="text"]:active {
+    border:1px solid #e7e7e7;
+    outline: none; /* 去除选中状态边框 */
+    -moz-outline: none;
+    -webkit-outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    -moz-background-color: rgba(0, 0, 0, 0);
+    -webkit-background-color: rgba(0, 0, 0, 0);/* 透明背景 */
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.date_select_bar .date_input {
+    text-align:center;
+    font-size: 14px;
+    color:#424242;
+    padding: 6px 4px;
+}
+.mask_calendar {
+    z-index:9999;
+    display:none;
+    width:360px;
+    height:384px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -192px 0 0 -200px;
+}

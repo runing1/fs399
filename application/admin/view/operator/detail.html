@@ -1,0 +1,309 @@
+<include file="public/layout"/>
+<style>
+    td {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 20px;
+    }
+
+    .span_1 {
+        float: left;
+        margin-left: 0px;
+        height: 130px;
+        line-height: 130px;
+    }
+
+    .span_1 ul {
+        list-style: none;
+        padding: 0px;
+    }
+
+    .span_1 ul li {
+        border: 1px solid #CCC;
+        height: 40px;
+        padding: 0px 10px;
+        margin-left: -1px;
+        margin-top: -1px;
+        line-height: 40px;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer"
+     style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i
+                class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>会员管理 - 运营商信息</h3>
+                <h5>网站系统会员管理会员信息</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="user_form" method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label>会员昵称</label>
+                </dt>
+                <dd class="opt">
+                    <input class="input-txt valid" name="nickname" value="{$operator.user_name}" readonly=""
+                           type="text">
+                    <p class="notic">会员昵称不可修改。</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>会员资产</label>
+                </dt>
+                <dd class="opt">
+                    <strong class="red"></strong>&nbsp;余额 <em>￥</em>{$operator.user_money}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>店铺资金</label>
+                </dt>
+                <dd class="opt">
+                    <strong class="red"></strong>&nbsp;余额 <em>￥</em>{$operator.funds}
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="mobile"><em>*</em>身份证</label>
+                </dt>
+                <dd class="opt">
+                    <input id="id_card" name="id_card" value="{$operator.id_card}" class="input-txt" type="text">
+                    <span class="err"></span>
+                    <p class="notic">请输入运营商负责人的身份证号。</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="mobile"><em>*</em>手机号码</label>
+                </dt>
+                <dd class="opt">
+                    <input id="mobile" name="mobile" value="{$operator.mobile}" class="input-txt" type="text">
+                    <span class="err"></span>
+                    <p class="notic">请输入常用的手机号码，将用来找回密码、接受订单通知等。</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="password">新密码</label>
+                </dt>
+                <dd class="opt">
+                    <input id="password" name="password" class="input-txt" type="password">
+                    <span class="err"></span>
+                    <p class="notic">留空表示不修改密码</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="password2">确认密码</label>
+                </dt>
+                <dd class="opt">
+                    <input id="password2" name="password2" class="input-txt" type="password">
+                    <span class="err"></span>
+                    <p class="notic">留空表示不修改密码</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">所在地址：</dt>
+                <dd class="opt">
+                    <select onchange="get_city(this)" id="province" name="province_id">
+                        <option value="0">选择省份</option>
+                        <volist name="province" id="vo">
+                            <option value="{$vo.region_id}"
+                            <if condition="$operator['province_id'] eq $vo['region_id']">selected</if>
+                            >{$vo.region_name}</option>
+                        </volist>
+                    </select>
+                    <select onchange="get_area(this)" id="city" name="city_id">
+                        <option value="0">选择城市</option>
+                        <volist name="city" id="vo">
+                            <option value="{$vo.region_id}"
+                            <if condition="$operator['city_id'] eq $vo['region_id']">selected</if>
+                            >{$vo.region_name}</option>
+                        </volist>
+                    </select>
+                    <select id="district" name="district_id">
+                        <option value="0">选择区域</option>
+                        <volist name="district" id="vo">
+                            <option value="{$vo.region_id}"
+                            <if condition="$operator['district_id'] eq $vo['region_id']">selected</if>
+                            >{$vo.region_name}</option>
+                        </volist>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="yys">运营商</label>
+                </dt>
+                <dd class="opt">
+                    <!--<input id="sex" name="sex" type="radio" value="0" checked>保密  &nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <input name="operator_type" type="radio" value="1"
+                    <if condition="$operator['operator_type'] eq 1">checked</if>
+                    >市运营商 &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="operator_type" type="radio" value="2"
+                    <if condition="$operator['operator_type'] eq 2">checked</if>
+                    >股东
+                    <input name="operator_type" type="radio" value="3"
+                    <if condition="$operator['operator_type'] eq 3">checked</if>
+                    >核心股东
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>营业执照上传</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_business_license" target="_blank" class="nyroModal" rel="gal"
+                               href="{$operator.business_license}">
+                                <i id="img_1" class="fa fa-picture-o"
+                                   onmouseover="layer.tips('<img src={$operator.business_license}>',this,{tips: [1, '#fff']});"
+                                   onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+                        <span class="type-file-box">
+                            <input type="text" id="business_license" name="business_license"
+                                   value="{$operator.business_license}"
+                                   class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','operator','img_call_back1')"
+                                   size="30" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">请上传图片格式文件</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>组织机构代码证副本</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+            <span class="show">
+            <a id="img_organizational_code" target="_blank" class="nyroModal" rel="gal" href="{$operator.organizational_code}">
+            <i id="img_2" class="fa fa-picture-o"
+               onmouseover="layer.tips('<img src={$operator.organizational_code}>',this,{tips: [1, '#fff']});"
+               onmouseout="layer.closeAll();"></i>
+            </a>
+            </span>
+                        <span class="type-file-box">
+            <input type="text" id="organizational_code" name="organizational_code" value="{$operator.organizational_code}"
+                   class="type-file-text">
+            <input type="button" name="button" id="button2" value="选择上传..." class="type-file-button">
+            <input class="type-file-file" onClick="GetUploadify(1,'','operator','img_call_back2')"
+                   size="30" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+            </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">请上传图片格式文件</p>
+                </dd>
+            </dl>
+
+
+            <dl class="row">
+                <dt class="tit">
+                    <label>法人代表身份证</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+            <span class="show">
+            <a id="img_representative_card" target="_blank" class="nyroModal" rel="gal" href="{$operator.representative_card}">
+            <i id="img_3" class="fa fa-picture-o"
+               onmouseover="layer.tips('<img src={$operator.representative_card}>',this,{tips: [1, '#fff']});"
+               onmouseout="layer.closeAll();"></i>
+            </a>
+            </span>
+                        <span class="type-file-box">
+            <input type="text" name="representative_card" value="{$operator.representative_card}" class="type-file-text">
+            <input type="button" name="button" id="button3" value="选择上传..." class="type-file-button">
+            <input class="type-file-file" onClick="GetUploadify(1,'','operator','img_call_back3')"
+                   size="30" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+            </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">请上传图片格式文件</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="payment_amount"><em>*</em>缴费</label>
+                </dt>
+                <dd class="opt">
+                    <input id="payment_amount" name="payment_amount" value="{$operator.payment_amount}"
+                           class="input-txt" type="text">元
+                    <span class="err"></span>
+                    <p class="notic">运营商已缴费金额</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="remarks">备注</label>
+                </dt>
+                <dd class="opt">
+                    <textarea name="remarks" style="width:456px; padding: 10px"></textarea>
+                </dd>
+
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="checkUserUpdate();"
+                                class="ncap-btn-big ncap-btn-green">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    //        $(document).ready(function(){
+    //            get_province();
+    //        });
+    function img_call_back1(fileurl_tmp) {
+        $("#business_license").val(fileurl_tmp);
+        $("#img_1").attr('href', fileurl_tmp);
+        $("#img_1").attr('onmouseover', "layer.tips('<img src=" + fileurl_tmp + ">',this,{tips: [1, '#fff']});");
+    }
+    function img_call_back2(fileurl_tmp) {
+        $("#organizational_code").val(fileurl_tmp);
+        $("#img_2").attr('href', fileurl_tmp);
+        $("#img_2").attr('onmouseover', "layer.tips('<img src=" + fileurl_tmp + ">',this,{tips: [1, '#fff']});");
+    }
+    function img_call_back3(fileurl_tmp) {
+        alert(fileurl_tmp);
+        $("input[name='representative_card']").val(fileurl_tmp);
+        $("#img_3").attr('href', fileurl_tmp);
+        $("#img_3").attr('onmouseover', "layer.tips('<img src=" + fileurl_tmp + ">',this,{tips: [1, '#fff']});");
+    }
+    function checkUserUpdate() {
+        // var email = $('input[name="email"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var password = $('input[name="password"]').val();
+        var password2 = $('input[name="password2"]').val();
+        var id_card = $('input[name="id_card"]').val();
+
+        var error = '';
+        if (password != password2) {
+            error += "两次密码不一样\n";
+        }
+        if (!checkMobile(mobile) && mobile != '') {
+            error += "手机号码填写有误\n";
+        }
+        var s=isCardID(id_card);
+        if(s==false){
+            error += "身份证号格式错误\n";
+           // return false;
+        }
+        if (error) {
+            layer.alert(error, {icon: 2});  //alert(error);
+            return false;
+        }
+        $('#user_form').submit();
+    }
+</script>
+</body>
+</html>

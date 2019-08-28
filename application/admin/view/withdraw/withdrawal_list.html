@@ -1,0 +1,100 @@
+<include file="public/layout"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/js/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="__PUBLIC__/static/css/main.css">-->
+</head>
+<body>
+<div class="page">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>提现记录</h3>
+                <h5></h5>
+            </div>
+        </div>
+    </div>
+    <div id="explanation" class="explanation"
+         style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>账户余额及店铺余额提现记录</li>
+
+        </ul>
+    </div>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table id="bill" lay-filter="test" class="hide"></table>
+        </div>
+    </div>
+</div>
+</div>
+<script src="__PUBLIC__/static/js/jquery.js"></script>
+<script src="__PUBLIC__/static/js/layui/layui.all.js"></script>
+<script>
+
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#bill'
+            ,cellMinWidth: 80
+            ,url: '/Admin/Withdraw/withdrawal_list/'//数据接口
+            ,method: 'post' //如果无需自定义HTTP类型，可不加该参数
+            ,page: {theme:"#1E9FFF",prev: '<em>上一页</em>'
+                ,next: '<em>下一页</em>'} //开启分页
+            ,limit: 10
+            ,cols: [[ //表头
+                {field: 'money', title: '提现金额',align: 'center'}
+                ,{field: 'user_type', title: '提现类型',align: 'center',toolbar: "#user_type"}
+                ,{field: 'procedures_money', title: '手续费',align: 'center' }
+                ,{field: 'account_money', title: '到账金额',align: 'center'}
+                ,{field: 'account_name', title: '账户名',align: 'center'}
+                ,{field: 'bank_name', title: '银行名称',align: 'center'}
+                ,{field: 'account_bank', title: '账户',align: 'center'}
+                ,{field: 'withdraw_status', title: '提现状态',align: 'center',toolbar: "#withdraw_status"}
+                ,{field: 'create_time', title: '申请日期',align: 'center',templet:'<div>{{ layui.util.toDateString(d.create_time*1000, "yyyy-MM-dd HH:mm") }}</div>'}
+                ,{field: 'remark', title: '审核备注',align: 'center'}
+                ,{fixed: 'right', title:'操作', toolbar: '#handle', width:150,align: 'center'}
+            ]]
+        });
+
+
+    });
+</script>
+<script type="text/html" id="user_type">
+    {{# if(d.user_type == '1'){ }}
+    <label>用户提现</label>
+    {{# } else if(d.user_type == '2'){ }}
+    <label>商家提现</label>
+    {{# } else if(d.user_type == '3'){ }}
+    <label>账户余额</label>
+    {{# } else if(d.user_type == '4'){ }}
+    <label>商家-橱窗提现</label>
+    {{# } else{ }}
+    <label>店铺余额</label>
+    {{# } }}
+</script>
+<script type="text/html" id="withdraw_status">
+    {{# if(d.withdraw_status == '1'){ }}
+    <label>审核中</label>
+    {{# } else if(d.withdraw_status == '2'){ }}
+    <label>审核同意</label>
+    {{# } else if(d.withdraw_status == '3'){ }}
+    <label style="color:red;">审核拒绝</label>
+    {{# } }}
+</script>
+<script type="text/html" id="handle">
+    <div class="handle">
+        <a href="javascript:;" style="line-height: 28px;" class="layui-btn layui-btn-danger" onclick="withdrawalDel(this,'{{d.id}}')">删除</a>
+    </div>
+</script>
+</body>
+

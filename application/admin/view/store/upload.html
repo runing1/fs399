@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="__PUBLIC__/static/js/layui/layui.js"></script>
+</head>
+<body>
+<div class="layui-form-item">
+    <label class="layui-form-label">图片</label>
+    <div class="layui-input-block">
+        <img id="pre_img" style="height: 30px;"/>
+        <button class="layui-btn layui-btn-sm" onclick="return false;" name="logo_image" id="upload_img">
+            <i class="layui-icon">&#xe67c;</i>上传图片
+        </button>
+        <input type="hidden" name="img" value="">
+    </div>
+</div>
+<script>
+    layui.use(['upload', 'jquery'], function () {
+        $ = layui.jquery;
+        var upload = layui.upload;
+    //执行实例
+        var uploadInst = upload.render({
+            elem: '#upload_img' //绑定元素
+            , url: '/admin/store/oss_upload_file_logoimage' //上传接口
+            , accept: 'images'
+            , done: function (res) {
+    //上传完毕回调
+                $('#pre_img').attr('src', res.msg);
+                $('input[name="img"]').val(res.msg);
+            }
+            , error: function () {
+    //请求异常回调
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<include file="public/layout"/>
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/static/js/admincp.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery.cookie.js"></script>
+<style>
+    .shopcard {
+        overflow: hidden;
+        padding: 20px 20px;
+        border: 1px solid #dadada;
+    }
+
+    .ma-to-20 {
+        margin-top: 20px;
+    }
+
+    .frozen-cha .cuschan {
+        width: 25%;
+    }
+
+    .shopcard .cuschan {
+        float: left;
+    / / width: 50 %;
+        text-align: center;
+    }
+
+    .shopcard .cuschan span {
+        font-size: 14px;
+        text-align: right;
+    }
+
+    .money, .frozen {
+        background: url(../images/money.png) no-repeat;
+        width: 41px;
+        height: 36px;
+        display: inline-block;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+
+    .shopcard .cuschan .co {
+        margin-left: 37px;
+        color: #e23435;
+    }
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+
+
+    <div class="flexigrid">
+
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 100px;" class="">昵称</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 150px;" class="">星级</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">类型</div>
+                        </th>
+
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">联系电话</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">金额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">奖励</div>
+                        </th>
+
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 120px;" class="">日期</div>
+                        </th>
+
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bDiv" style="height: auto;" >
+
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <if condition="empty($bill) eq true">
+                        <tr data-id="0">
+                            <td class="no-data" align="center" axis="col0" colspan="50">
+                                <i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+                            </td>
+                        </tr>
+                     <else/>
+                    <foreach name="bill" item="vo" key="k" >
+                        <tr>
+                            <td align="left" class="" >
+                                <div style="text-align: center; width: 100px;">{$vo.username}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.level}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 150px;"><if condition="$vo.type eq 3">运营商账户提现</if><if condition="$vo.type eq 5">运营商店铺提现</if></div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">
+                                    {$vo.mobile}
+                                </div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.type_money}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$vo.update_money}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 120px;">{$vo.createtime|date='Y-m-d H:i',###}</div>
+                            </td>
+
+                        </tr>
+                    </foreach>
+
+
+                    </if>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="page p">
+            {$page}
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

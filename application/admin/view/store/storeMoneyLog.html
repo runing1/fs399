@@ -1,0 +1,98 @@
+
+<include file="public/layout"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__PUBLIC__/static/js/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/static/css/main.css">
+</head>
+<body>
+<div class="page">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <div class="fixed-bar">
+            <div class="item-title">
+                <div class="subject">
+                    <h3>店铺资金记录</h3>
+                    <h5></h5>
+                </div>
+            </div>
+        </div>
+        <div id="explanation" class="explanation"
+             style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+            <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+                <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+                <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+            </div>
+            <ul>
+                <li>店铺资金记录</li>
+
+            </ul>
+        </div>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table id="storemoneylog" lay-filter="test" class="hide"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="__PUBLIC__/static/js/jquery.js"></script>-->
+<script src="__PUBLIC__/static/js/layui/layui.all.js"></script>
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#storemoneylog'
+            ,cellMinWidth: 80
+            ,url: '/Admin/Store/storeMoneyLog_Handle'//数据接口
+            ,page: {theme:"#1E9FFF",prev: '<em>上一页</em>'
+                ,next: '<em>下一页</em>'} //开启分页
+            ,limit: 10
+            ,cols: [[ //表头
+                {field: 'order_sn', title: '订单号',align: 'center'}
+                ,{field: 'money', title: '金额',align: 'center'}
+                ,{field: 'remark', title: '描述',align: 'center'}
+                ,{field: 'createtime', title: '时间',align: 'center',templet:'<div>{{ layui.util.toDateString(d.createtime*1000, "yyyy-MM-dd HH:mm") }}</div>'}
+                ,{fixed: 'right', title:'操作', toolbar: '#handle', width:150,align: 'center'}
+            ]]
+        });
+
+
+    });
+</script>
+<script type="text/html" id="handle">
+    <div class="handle">
+        <a href="javascript:;" style="line-height: 28px;" class="layui-btn layui-btn-danger" onclick="deleteMoneyLog(this,'{{d.id}}')">删除</a>
+    </div>
+</script>
+<script>
+    function deleteMoneyLog(obj,id){
+        layer.confirm('确定要删除吗？', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                // 确定
+                $.ajax({
+                    url: "{:U('Store/deleteMoneyLog')}",
+                    type: 'post',
+                    data: {id:id},
+                    dataType: 'JSON',
+                    success: function (data) {
+                        layer.closeAll();
+                        if (data.status == 1) {
+                            layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                                location.href = data.url;
+                            });
+                        } else {
+                            layer.msg(data.msg, {icon: 2, time: 2000});
+                        }
+                    }
+                });
+            }, function (index) {
+                layer.close(index);
+            }
+        );
+    }
+</script>
+</body>

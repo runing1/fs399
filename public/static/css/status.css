@@ -1,0 +1,94 @@
+.status_con{
+    background: #fff;
+    width:100%;
+    min-width: 1000px;
+}
+.layui-tab-brief>.layui-tab-title .layui-this {
+    color: #0ba4da;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid #0ba4da;
+}
+
+.layui-tab-content{
+    padding: 0;
+}
+.layui-tab-item{
+    background: #eee;
+}
+
+.status_con .ul_con{
+    background: #fff!important;
+    padding: 20px 10% 20px 10%;
+    margin-bottom: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.status_con .headline{
+    width: 300px;
+    margin: 0 auto;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+}
+.status_con .ul_con .pay_top{
+    height: 50px;
+    line-height: 50px;
+}
+
+.status_con .ul_con .details{
+    padding: 10px 0 30px 0;
+}
+.status_con .ul_con .details>div{
+    display: inline-block;
+}
+.status_con .ul_con .font{
+    color:#333;
+    height: 30px;
+    /*line-height: 30px;*/
+}
+.status_con .ul_con .shopp_title{
+    margin-left:20px;
+}
+.status_con .ul_con .tColor{
+    color:#9F9F9F;
+    display: table-cell;
+    width: 300px;
+}
+.status_con .ul_con .bottomHR{
+    margin-bottom: 20px;
+}
+.status_con .ul_con .btns{
+    padding: 5px 10px;
+    border: 1px solid #3F3F3F;
+    border-radius: 25px;
+}
+.status_con .ul_con .bgcolor{
+    color:red;
+}
+#order{
+    padding: 30px;
+    display: none;
+    font-size: 16px;
+}
+.status_con .complaint_list{
+    display: inline-block;
+    padding:20px 50px 20px 50px;
+    margin-left: 20px;
+    width:400px;
+}
+.status_con .complaint_list>li{
+    padding-bottom: 20px;
+}
+.status_con .complaintImg{
+    width:50px ;
+    height: 50px;
+    padding:0 5px;
+}
+.status_con .text_con{
+    color:#FF3030;
+
+}
+
